@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import com.example.demo.bean.Person;
+import com.example.demo.service.PassCheckService;
 import com.example.demo.service.PassService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,17 +21,25 @@ public class PassCheckController {
     JdbcTemplate jdbctemplate;
 
     @Autowired
-    PassService passService;
+    PassCheckService passCheckService;
 
     @ResponseBody
-    @PostMapping(path = "/post")
-    public HashMap<String, String> getPass(RequestEntity requestEntity){
+    @PostMapping(path = "/checklogin")
+    public Person getPass(RequestEntity requestEntity){
         LinkedHashMap<String, String> msg = (LinkedHashMap<String, String>) requestEntity.getBody();
-        log.info(msg.get("stu"));
-        HashMap<String, String> params = new HashMap<>();
-        String a = "2322";
-        params.put("date", a);
-        params.put("typeId", "dsafa");
-        return params;
+        int id = Integer.valueOf(msg.get("stu"));
+        String pass = msg.get("pass");
+        String p = msg.get("permissionId");
+        return passCheckService.getPass(id, pass, p);
+    }
+
+    @ResponseBody
+    @PostMapping(path = "/editpass")
+    public int editPass(RequestEntity requestEntity){
+        LinkedHashMap<String, String> msg = (LinkedHashMap<String, String>) requestEntity.getBody();
+        int id = Integer.valueOf(msg.get("stu"));
+        String pass = msg.get("pass");
+        String p = msg.get("permissionId");
+        return passCheckService.editPass(id, pass, p);
     }
 }
