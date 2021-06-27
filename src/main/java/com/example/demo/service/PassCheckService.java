@@ -39,10 +39,10 @@ public class PassCheckService {
         return faultPer;
     }
     public int editPass(int id, String pass, String p) {
-        if (p.equals("1")){
+        if (p.equals("t") || p.equals("a")){
             return teaPassCheckMapper.editTeaPass(id, pass);
         }
-        else if (p.equals("2")){
+        else if (p.equals("s")){
             return stuPassCheckMapper.editStuPass(id, pass);
         }
         return 0;

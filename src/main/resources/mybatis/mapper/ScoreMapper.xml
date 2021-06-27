@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.ScoreMapper">
+<select id="getScore" resultType="com.example.demo.bean.Score">
+    select takeclass.cno as courseid ,cname as courseName,takeclass.sno as sid, sname, score
+    from courses,students,takeclass
+    where takeclass.cno=#{cno}
+      and   takeclass.tno=#{tno}
+      and   takeclass.cno=courses.cno
+      and   takeclass.sno=students.sno;
+</select>
+<update id="updateScore">
+    update takeclass
+    set score=#{score}
+    where  cno=#{cno}
+      and sno=#{sno};
+</update>
+</mapper>

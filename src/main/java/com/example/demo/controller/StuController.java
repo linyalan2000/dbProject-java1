@@ -30,4 +30,5 @@ public class StuController {
         return stuService.getInfo(Integer.valueOf(id));
     }
 
+
 }
