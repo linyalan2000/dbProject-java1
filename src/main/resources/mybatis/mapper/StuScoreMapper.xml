@@ -12,7 +12,9 @@
         and courses.cno=#{cno}
     </if>
       and takeclass.sno=#{sno}
+    <if test="term != null">
       and courses.term=#{term}
+    </if>
       and takeclass.tno=teachers.tno;
 </select>
 </mapper>

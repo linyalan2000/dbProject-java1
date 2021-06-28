@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.AdminScoreMapper">
+<select id="getAdminScore" resultType="com.example.demo.bean.AdminScore">
+    select takeclass.sno, sname, takeclass.cno, cname, tname, score, term
+    from courses,students,takeclass,teachers
+    where
+      takeclass.cno=courses.cno
+      and   takeclass.sno=students.sno
+      and   takeclass.tno=teachers.tno
+      <if test="cno != -1">
+          and   takeclass.cno=#{cno}
+      </if>
+    <if test="sno != -1">
+        and   takeclass.sno=#{sno}
+    </if>
+;
+</select>
+<update id="updateAdminScore">
+    update takeclass
+    set score=#{score}
+    where  cno=#{cno}
+      and sno=#{sno}
+</update>
+    <delete id="deleteAdminScore">
+        delete takeclass from takeclass,teachers
+        where
+            takeclass.tno = teachers.tno
+        <if test="cno != -1">
+            and cno=#{cno}
+        </if>
+        <if test="sno != -1">
+            and sno=#{sno}
+        </if>
+    </delete>
+    <insert id="addAdminScore">
+        insert into takeclass(sno, cno, tno) values (#{sno}, #{cno}, #{tno});
+    </insert>
+</mapper>

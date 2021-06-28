@@ -1,6 +1,8 @@
 package com.example.demo.mapper;
 
 
+import com.example.demo.bean.AdminScore;
+import com.example.demo.bean.AdminTea;
 import com.example.demo.bean.Course;
 import com.example.demo.bean.Score;
 import org.apache.ibatis.annotations.Mapper;

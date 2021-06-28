@@ -6,7 +6,7 @@
 <select id="getCourseInfo" resultType="com.example.demo.bean.Course">
     select takeclass.cno, cname, department, tname, count(*) as stuNum
     from takeclass,courses,teachers
-    where takeclass.tno = 90003
+    where takeclass.tno = #{id}
       and  takeclass.cno=courses.cno
       and  takeclass.tno=teachers.tno
     group by cname,department, tname, takeclass.cno;

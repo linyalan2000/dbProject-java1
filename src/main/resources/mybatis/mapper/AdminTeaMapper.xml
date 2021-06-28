@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.AdminTeaMapper">
+    <select id="getTea" resultType="com.example.demo.bean.AdminTea">
+        select tno, tname, title, inyear as hireDate, privilege as root, telphone as tel from teachers
+        <if test="tno != -1">
+        where tno = #{tno};
+        </if>
+    </select>
+    <insert id="AddTeacher">
+        insert into teachers(tno, tname, pass, sex, title, inyear, privilege) values (#{tno}, #{tname}, #{pass},  #{sex}, #{title}, #{intime}, #{privilege});
+    </insert>
+    <update id="UpdateTeacher">
+        update teachers set privilege = #{privilege}, title = #{title} where tno = #{tno};
+    </update>
+</mapper>
