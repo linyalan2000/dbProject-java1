@@ -42,4 +42,14 @@ public class PassCheckController {
         String p = msg.get("permissionId");
         return passCheckService.editPass(id, pass, p);
     }
+
+    @ResponseBody
+    @PostMapping(path = "/edittel")
+    public int editTel(RequestEntity requestEntity){
+        LinkedHashMap<String, String> msg = (LinkedHashMap<String, String>) requestEntity.getBody();
+        int id = Integer.valueOf(msg.get("stu"));
+        String tel = msg.get("tel");
+        String p = msg.get("permissionId");
+        return passCheckService.editTel(id, tel, p);
+    }
 }

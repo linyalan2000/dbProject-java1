@@ -55,4 +55,12 @@ public class AdminTeaController {
         String title = msg.get("title");
         return adminTeaService.updateTeacher(tno, title, privilege);
     }
+    @ResponseBody
+    @PostMapping(path = "/delteacher")
+    public int delTea(RequestEntity requestEntity){
+        LinkedHashMap<String, String> msg = (LinkedHashMap<String, String>) requestEntity.getBody();
+        int tno = Integer.valueOf(msg.get("tno"));
+        log.info(String.valueOf(tno));
+        return adminTeaService.delTeacher(tno);
+    }
 }

@@ -4,8 +4,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.AdminCourseMapper">
     <select id="getAdminCourse" resultType="com.example.demo.bean.AdminCourse">
-        select courses.cno, cname, department as academy, tname, term
-        from teachers,giveLesson,courses
+        select courses.cno, teachers.tno, cname, department as academy, tname, term
+        from teachers, giveLesson,courses
         where  teachers.tno = giveLesson.tno
         and courses.cno = giveLesson.cno
         <if test="cno != -1">
@@ -15,10 +15,14 @@
             and teachers.tno = #{tno};
         </if>
     </select>
-<!--    <insert id="AddTeacher">-->
-<!--        insert into teachers(tno, tname, pass, sex, title, inyear, privilege) values (#{tno}, #{tname}, #{pass},  #{sex}, #{title}, #{intime}, #{privilege});-->
-<!--    </insert>-->
-<!--    <update id="UpdateTeacher">-->
-<!--        update teachers set privilege = #{privilege}, title = #{title} where tno = #{tno};-->
-<!--    </update>-->
+    <insert id="AddAdminCourse">
+        {call update_givnlesson(#{cno},#{tno},#{cname},#{acedamy},#{term},#{credit})}
+    </insert>
+    <delete id="deleteAdminCourse">
+        delete from giveLesson where cno = #{cno} and tno = #{tno};
+    </delete>
+    <update id="updateAdminCourse">
+        update giveLesson set tno = #{tno} where cno = #{cno} and tno = #{oldtno}
+    </update>
+
 </mapper>

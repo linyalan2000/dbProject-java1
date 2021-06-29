@@ -12,4 +12,5 @@ public interface AdminTeaMapper {
     List<AdminTea> getTea(int tno);
     int AddTeacher(int tno, String tname, String title, String sex, String pass, int intime, String privilege);
     int UpdateTeacher(int tno, String title, String privilege);
+    int delTeacher(int tno);
 }

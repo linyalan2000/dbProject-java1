@@ -10,6 +10,7 @@ import java.util.List;
 @Mapper
 public interface AdminCourseMapper {
     List<AdminCourse> getAdminCourse(int cno, int tno);
-//    int updateAdminScore(int cno, int sno, int score);
-//    int deleteAdminScore(int cno, int sno);
+    int updateAdminCourse(int cno, int tno, int oldtno);
+    int AddAdminCourse(int cno, int tno, String cname, String acedamy, String term, String credit);
+    int deleteAdminCourse(int cno, int tno);
 }

@@ -40,29 +40,35 @@ public class AdminCourseController {
         return adminCourseService.getAdminCourse(a, b);
     }
 
-//    @ResponseBody
-//    @PostMapping("/updateadminscore")
-//    public int updateAdminScore(RequestEntity requestEntity) {
-//        LinkedHashMap<String, String> msg = (LinkedHashMap<String, String>) requestEntity.getBody();
-//        int cno = Integer.valueOf(msg.get("cno"));
-//        int sno = Integer.valueOf(msg.get("sno"));
-//        int score = Integer.valueOf(msg.get("score"));
-//        return adminCourseService.updateAdminScore(cno, sno, score);
-//    }
-//
-//    @ResponseBody
-//    @PostMapping("/deleteadminscore")
-//    public int deleteAdminScore(RequestEntity requestEntity) {
-//        LinkedHashMap<String, String> msg = (LinkedHashMap<String, String>) requestEntity.getBody();
-//        int cno, sno;
-//        if (msg.get("cno") != null)
-//            cno = Integer.valueOf(msg.get("cno"));
-//        else
-//            cno = -1;
-//        if (msg.get("sno") != null)
-//            sno = Integer.valueOf(msg.get("sno"));
-//        else
-//            sno = -1;
-//        return adminCourseService.deleteAdminScore(cno, sno);
-//    }
+    @ResponseBody
+    @PostMapping("/updateadmincourse")
+    public int updateAdminScore(RequestEntity requestEntity) {
+        LinkedHashMap<String, String> msg = (LinkedHashMap<String, String>) requestEntity.getBody();
+        int cno = Integer.valueOf(msg.get("cno"));
+        int tno = Integer.valueOf(msg.get("tno"));
+        int oldtno = Integer.valueOf(msg.get("oldtno"));
+        return adminCourseService.updateAdminCourse(cno,tno, oldtno);
+    }
+
+    @ResponseBody
+    @PostMapping("/addadmincourse")
+    public int addAdminScore(RequestEntity requestEntity) {
+        LinkedHashMap<String, String> msg = (LinkedHashMap<String, String>) requestEntity.getBody();
+        int cno = Integer.valueOf(msg.get("cno"));
+        int tno = Integer.valueOf(msg.get("tno"));
+        String cname = msg.get("cname");
+        String acedamy = msg.get("acedamy");
+        String term = msg.get("term");
+        String credit = msg.get("credit");
+        return adminCourseService.insertAdminCourse(cno, tno, cname, acedamy, term, credit);
+    }
+
+    @ResponseBody
+    @PostMapping("/deleteadmincourse")
+    public int deleteAdminScore(RequestEntity requestEntity) {
+        LinkedHashMap<String, String> msg = (LinkedHashMap<String, String>) requestEntity.getBody();
+        int cno = Integer.valueOf(msg.get("cno"));
+        int tno = Integer.valueOf(msg.get("tno"));
+        return adminCourseService.deleteAdminCourse(cno, tno);
+    }
 }

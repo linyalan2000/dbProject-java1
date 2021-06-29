@@ -6,6 +6,7 @@ import lombok.Data;
 @Data
 public class AdminCourse {
     int cno;
+    int tno;
     String cname;
     String academy;
     String tname;

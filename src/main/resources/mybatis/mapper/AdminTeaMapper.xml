@@ -15,4 +15,7 @@
     <update id="UpdateTeacher">
         update teachers set privilege = #{privilege}, title = #{title} where tno = #{tno};
     </update>
+    <delete id="delTeacher">
+        delete from teachers where tno = #{tno}
+    </delete>
 </mapper>

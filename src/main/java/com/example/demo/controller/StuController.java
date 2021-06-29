@@ -1,9 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.bean.Account;
-import com.example.demo.bean.Person;
 import com.example.demo.bean.Student;
-import com.example.demo.service.PassCheckService;
 import com.example.demo.service.StuService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 
 @Slf4j
 @Controller
@@ -26,9 +24,48 @@ public class StuController {
 
     @ResponseBody
     @GetMapping("/stuinfo")
-    public Student getStuInfo(@RequestParam("id") String id){
-        return stuService.getInfo(Integer.valueOf(id));
+    public List<Student> getStuInfo(@RequestParam("id") String id){
+        if (id.equals(""))
+        return stuService.getInfo(-1);
+        else
+            return stuService.getInfo(Integer.valueOf(id));
     }
 
 
+    @ResponseBody
+    @PostMapping("/addstu")
+    public int addAdminScore(RequestEntity requestEntity) {
+        LinkedHashMap<String, String> msg = (LinkedHashMap<String, String>) requestEntity.getBody();
+        int sno = Integer.valueOf(msg.get("sno"));
+        String sname = msg.get("sname");
+        String pass = msg.get("pass");
+        String sex = msg.get("sex");
+        String major = msg.get("major");
+        String tel = msg.get("tel");
+        int inyear = Integer.valueOf(msg.get("inyear"));
+        return stuService.addStu(sno, sname, pass, sex, major, inyear, tel);
+    }
+
+    @ResponseBody
+    @PostMapping("/delstu")
+    public int delAdminScore(RequestEntity requestEntity) {
+        LinkedHashMap<String, String> msg = (LinkedHashMap<String, String>) requestEntity.getBody();
+        int sno = Integer.valueOf(msg.get("sno"));
+        return stuService.delStu(sno);
+    }
+
+    @ResponseBody
+    @PostMapping("/updatestu")
+    public int updateAdminScore(RequestEntity requestEntity) {
+        LinkedHashMap<String, String> msg = (LinkedHashMap<String, String>) requestEntity.getBody();
+        int sno = Integer.valueOf(msg.get("sno"));
+        String sname = msg.get("sname");
+        String pass = msg.get("pass");
+        String sex = msg.get("sex");
+        String major = msg.get("major");
+        String tel = msg.get("tel");
+        int inyear = Integer.valueOf(msg.get("inyear"));
+        return stuService.updateStu(sno, sname, pass, sex, major, inyear, tel);
+    }
 }
+

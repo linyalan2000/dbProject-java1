@@ -9,4 +9,7 @@
 <update id="editTeaPass">
     update teachers set pass = #{pass} where tno = #{id};
 </update>
+    <update id="editTeaTel">
+        update teachers set pass = #{tel} where tno = #{id};
+    </update>
 </mapper>

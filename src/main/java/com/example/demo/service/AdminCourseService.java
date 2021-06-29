@@ -14,22 +14,22 @@ import java.util.List;
 @Service
 public class AdminCourseService {
     @Autowired
-    AdminCourseMapper AdminCourseMapper;
+    AdminCourseMapper adminCourseMapper;
 
     public List<AdminCourse> getAdminCourse(int cno, int tno) {
-        return AdminCourseMapper.getAdminCourse(cno, tno);
+        return adminCourseMapper.getAdminCourse(cno, tno);
     }
 
-//    public int insertAdminCourse (int cno, String cname, String academy, int tno, String term){
-//
-//    }
+    public int insertAdminCourse (int cno, int tno, String cname, String acedamy, String term, String credit){
+        return adminCourseMapper.AddAdminCourse(cno, tno, cname, acedamy, term, credit);
+    }
 
-//    public int updateAdminScore(int cno, int sno, int score){
-//        return adminScoreMapper.updateAdminScore(cno, sno, score);
-//    }
-//
-//    public int deleteAdminScore(int cno, int sno){
-//        return adminScoreMapper.deleteAdminScore(cno, sno);
-//    }
+    public int updateAdminCourse(int cno, int tno, int oldtno){
+        return adminCourseMapper.updateAdminCourse(cno, tno, oldtno);
+    }
+
+    public int deleteAdminCourse(int cno, int tno){
+        return adminCourseMapper.deleteAdminCourse(cno, tno);
+    }
 
 }

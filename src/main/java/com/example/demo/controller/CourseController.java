@@ -27,7 +27,10 @@ public class CourseController {
 
     @ResponseBody
     @GetMapping("/courseinfo")
-    public List<Course> getStuInfo(@RequestParam("id") String id){
-        return courseService.getCourseInfo(Integer.valueOf(id));
+    public List<Course> getStuInfo(@RequestParam("id") String id, @RequestParam("cno") String cno){
+        if (!cno.equals(""))
+            return courseService.getCourseInfo(Integer.valueOf(id), Integer.valueOf(cno));
+        else
+            return courseService.getCourseInfo(Integer.valueOf(id), -1);
     }
 }

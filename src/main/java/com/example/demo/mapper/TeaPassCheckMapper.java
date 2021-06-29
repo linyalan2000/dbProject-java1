@@ -8,4 +8,5 @@ import org.apache.ibatis.annotations.Mapper;
 public interface TeaPassCheckMapper {
     Person getTeaPass(int id);
     int editTeaPass(int id, String pass);
+    int editTeaTel(int id, String tel);
 }

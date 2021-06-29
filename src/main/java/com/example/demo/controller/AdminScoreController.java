@@ -2,9 +2,7 @@ package com.example.demo.controller;
 
 
 import com.example.demo.bean.AdminScore;
-import com.example.demo.bean.Score;
 import com.example.demo.service.AdminScoreService;
-import com.example.demo.service.ScoreService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.RequestEntity;
@@ -55,11 +53,11 @@ public class AdminScoreController {
     public int deleteAdminScore(RequestEntity requestEntity) {
         LinkedHashMap<String, String> msg = (LinkedHashMap<String, String>) requestEntity.getBody();
         int cno, sno;
-        if (msg.get("cno") != null)
+        if (msg.get("cno") != "")
             cno = Integer.valueOf(msg.get("cno"));
         else
             cno = -1;
-        if (msg.get("sno") != null)
+        if (msg.get("sno") != "")
             sno = Integer.valueOf(msg.get("sno"));
         else
             sno = -1;

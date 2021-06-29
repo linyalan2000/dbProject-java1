@@ -26,4 +26,7 @@ public class AdminTeaService {
     public int updateTeacher(int tno, String title, String privilege) {
         return adminTeaMapper.UpdateTeacher(tno, title, privilege);
     }
+    public int delTeacher(int tno){
+        return adminTeaMapper.delTeacher(tno);
+    }
 }

@@ -9,5 +9,5 @@ import java.util.List;
 
 @Mapper
 public interface CourseMapper {
-    List<Course> getCourseInfo(int id);
+    List<Course> getCourseInfo(int id, int cno);
 }

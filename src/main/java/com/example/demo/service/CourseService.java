@@ -16,8 +16,8 @@ public class CourseService {
     @Autowired
     CourseMapper courseMapper;
 
-    public List<Course> getCourseInfo(int id) {
-        return courseMapper.getCourseInfo(id);
+    public List<Course> getCourseInfo(int id, int cno) {
+        return courseMapper.getCourseInfo(id, cno);
     }
 
 }

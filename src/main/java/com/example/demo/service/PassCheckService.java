@@ -47,4 +47,8 @@ public class PassCheckService {
         }
         return 0;
     }
+
+    public int editTel(int id, String tel, String p) {
+        return teaPassCheckMapper.editTeaTel(id, tel);
+    }
 }

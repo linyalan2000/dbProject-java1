@@ -7,6 +7,9 @@
     select takeclass.cno, cname, department, tname, count(*) as stuNum
     from takeclass,courses,teachers
     where takeclass.tno = #{id}
+      <if test="cno != -1">
+          and takeclass.cno = #{cno}
+      </if>
       and  takeclass.cno=courses.cno
       and  takeclass.tno=teachers.tno
     group by cname,department, tname, takeclass.cno;
